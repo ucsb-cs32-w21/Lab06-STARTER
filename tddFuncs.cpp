@@ -1,10 +1,11 @@
 #include "tddFuncs.h"
 #include <iostream>
 #include <math.h>
+#include <iomanip>
 using std::cout;
 using std::endl;
 
-#define epsilon 0.01
+#define epsilon 0.001
 
 void assertEquals(std::string expected, 
 		  std::string actual, 
@@ -31,6 +32,8 @@ void assertEquals(int expected,
 void assertEquals(double expected, 
       double actual, 
       std::string message) {
+      //set up outpout format
+      cout << std::setprecision(3) << std::fixed;
       if (fabs(expected-actual) < epsilon) {
         cout << "PASSED: " << message << endl;;
       } else {
