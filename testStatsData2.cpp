@@ -34,12 +34,10 @@ int main() {
    
   //read in the demographic data
   read_csv(pileOfData, "county_demographics.csv", DEMOG); 
-
+  
   visitorCombineCounty theCounties("simple_uscities.csv");
   //use visitor pattern to be able to aggregate
-  for (const auto &obj : pileOfData) {
-        obj->accept((visitorCombineCounty&)theCounties);
-  }
+  statTool::createCountyData(pileOfData, theCounties);
 
   countyGather fillCounties;
 

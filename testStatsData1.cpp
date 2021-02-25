@@ -18,6 +18,7 @@
 #include "visitorCombineState.h"
 #include "visitorCombineCounty.h"
 #include "stats.h"
+#include "statTool.h"
 using namespace std;
 
 int main() {
@@ -36,14 +37,11 @@ int main() {
   //create a visitor to combine the state data
   visitorCombineState theStates;
   //use visitor pattern to be able to aggregate
-  for (const auto &obj : pileOfData) {
-        obj->accept((visitorCombineState&)theStates);
-  }
+  statTool::createStateData(pileOfData, theStates);
+  
   visitorCombineCounty theCounties("simple_uscities.csv");
   //use visitor pattern to be able to aggregate
-  for (const auto &obj : pileOfData) {
-        obj->accept((visitorCombineCounty&)theCounties);
-  }
+  statTool::createCountyData(pileOfData, theCounties);
 
   //use the counts to compute mean
   vector<double> dataXcount;
